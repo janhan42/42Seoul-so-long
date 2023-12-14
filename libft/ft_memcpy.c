@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so-long.c                                          :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 19:09:44 by janhan            #+#    #+#             */
-/*   Updated: 2023/12/04 19:13:41 by janhan           ###   ########.fr       */
+/*   Created: 2023/10/04 23:46:21 by janhan            #+#    #+#             */
+/*   Updated: 2023/10/08 00:34:06 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-/*gcc -I /usr/local/include/ so-long.c -L /usr/local/lib/ -framework OpenGL -framework AppKit ./mlx/libmlx.a */
-
-#include "./mlx/mlx.h"
-
-int main(void)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	void *mlx;
+	char		*temp_dest;
+	const char	*temp_src;
+	size_t		i;
 
-	mlx = mlx_init();
-
-	mlx_new_window(mlx, 500, 500, "so-long");
-
-	mlx_loop(mlx);
+	i = 0;
+	temp_dest = (char *)dest;
+	temp_src = (const char *)src;
+	if (dest == src)
+		return (dest);
+	while (i < n)
+	{
+		temp_dest[i] = temp_src[i];
+		i++;
+	}
+	return (dest);
 }
