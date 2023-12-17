@@ -6,44 +6,57 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:44:19 by janhan            #+#    #+#             */
-/*   Updated: 2023/12/14 17:34:25 by janhan           ###   ########.fr       */
+/*   Updated: 2023/12/17 16:59:06 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 #include <stdint.h>
+#include <stdlib.h>
 
-void	init_info(t_info *info)
+// perror("Error: calloc failed\n");
+// exit(EXIT_FAILURE);
+
+int	ft_exit(t_data *data)
 {
-	info->img_path.wall = "";
-	info->img_path.floor = "";
-	info->img_path.player = "";
-	info->img_path.item = "";
-	info->img_path.exit_door = "";
-	
+	mlx_destroy_window(data->mlx, data->win);
+	exit(EXIT_SUCCESS);
 }
 
-int	main(void)
+static int	ft_render_next_frame(t_data *data)
 {
-	void	*mlx;
-	void	*window;
-	void	*image;
-	int		x;
-	int		y;
-	t_info	info;
-
-	init_info(&info);
-	mlx = mlx_init();
-	window = mlx_new_window(mlx, 500, 500, "so_long");
-	image = mlx_xpm_file_to_image(mlx, "./image.xpm", &x, &y);
-
-	for (int i = 0; i < 5; ++i)
-	{
-		for (int j = 0; j < 5; ++j)
-		{
-			mlx_put_image_to_window(mlx, window, image, x * j, y * i);
-		}
-	}
-	mlx_loop(mlx);
+	ft_put_background(data);
+	ft_create_map(data);
+	mlx_hook(data->win, 17, 1L << 2, ft_exit, data);
+	mlx_key_hook(data->win, ft_key_hook, data);
 	return (0);
+}
+
+int	main(int ac, char **av)
+{
+	t_data	data;
+	t_map	map;
+
+	//window 사이즈 파싱
+	map.map = ft_calloc(data.size_y + 1, sizeof(char *));
+	if (!map.map)
+	{
+		perror("Error: calloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	ft_init(&data, &map);
+	ft_parse_input(&data, av, ac);
+	data.mlx = mlx_init();
+	if (!data.mlx)
+	{
+		perror("Error: mlx_init failed\n");
+		exit(EXIT_FAILURE);
+	}
+	data.win = mlx_new_window(data.mlx, data.size_x,
+							data.size_y, "so_long");
+	ft_render_next_frame(&data);
+	mlx_loop(data.mlx);
+	perror("Error: mlx_loop failed\n");
+	exit(EXIT_FAILURE);
+
 }
