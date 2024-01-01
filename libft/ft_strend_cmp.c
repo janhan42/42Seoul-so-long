@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_strend_cmp.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/05 09:34:07 by janhan            #+#    #+#             */
-/*   Updated: 2023/10/05 13:13:36 by janhan           ###   ########.fr       */
+/*   Created: 2024/01/02 08:40:07 by janhan            #+#    #+#             */
+/*   Updated: 2024/01/02 08:42:05 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_toupper(int c)
+int	ft_strend_cmp(char *name, char *end)
 {
-	if ('a' <= c && c <= 'z')
-		return (c -= 'a' - 'A');
-	else
-		return (c);
+	int	name_len;
+	int	exit_len;
+
+	name_len = ft_strlen(name);
+	exit_len = ft_strlen(end);
+
+	if (name_len <= exit_len)
+		return (0);
+	name += name_len - exit_len;
+	while (*name)
+	{
+		if (*name != *end)
+			return (0);
+		name++;
+		end++;
+	}
+	return (1);
 }

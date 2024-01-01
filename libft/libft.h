@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 18:25:27 by janhan            #+#    #+#             */
-/*   Updated: 2023/12/12 13:58:17 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/02 08:44:57 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,6 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
-
-//----------------------------------------------- Bonus
-
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new_node);
 int		ft_lstsize(t_list *lst);
@@ -69,4 +66,8 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void*(*f)(void *), void(*del)(void *));
 
+/* -----------so_long plus ----------- */
+int		ft_strend_cmp(char *name, char *end);
+void	ft_free_chartable(char **table);
+int		ft_chartable_linecount(char **table);
 #endif
