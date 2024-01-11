@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 18:25:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/02 08:44:57 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/11 10:34:25 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 # define LIBFT_H
 
 # include <stdlib.h>
+# include <stdarg.h>
 # include <unistd.h>
+
+# define ERROR 1
 
 typedef struct s_list
 {
@@ -66,8 +69,19 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void*(*f)(void *), void(*del)(void *));
 
-/* -----------so_long plus ----------- */
-int		ft_strend_cmp(char *name, char *end);
-void	ft_free_chartable(char **table);
+/* ------ printf ------ */
+
+int		ft_printf(const char *format, ...);
+void	ft_print_char(va_list *out_ap, int *out_count, int *flag);
+void	ft_print_str(va_list *out_ap, int *out_count, int *flag);
+void	ft_print_di(va_list *out_ap, int *out_count, int *flag);
+void	ft_print_hex(va_list *out_ap, int *out_count,
+			const char type, int *flag);
+void	ft_print_address(va_list *out_ap, int *out_count, int *flag);
+void	ft_print_u(va_list *out_ap, int *out_count, int *flag);
+
+/* ------ so_long plus ------ */
+int		ft_strend_cmp(char *dest, char *end);
 int		ft_chartable_linecount(char **table);
+void	ft_free_chartable(char **table);
 #endif

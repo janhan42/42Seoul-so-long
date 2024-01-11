@@ -5,48 +5,53 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 07:42:35 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/02 08:03:17 by janhan           ###   ########.fr       */
+/*   Created: 2024/01/11 09:35:30 by janhan            #+#    #+#             */
+/*   Updated: 2024/01/11 09:47:07 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../../so_long.h"
 #include <sys/syslimits.h>
 
-int	validparams(int fd, char **line, char **readbuff)
+/*
+ * 매개변수가 유효 한지 확인 유효하지 않으면 -1 리턴
+ * readbuff가 null이였으면 빈 문자열로 설정
+ */
+int	validparmas(int fd, char **lien, char **readbuff)
 {
 	if (*readbuff == NULL)
 	{
 		*readbuff = malloc(sizeof(char));
-		if (!*readbuff)
+		if (*readbuff == NULL)
 			return (-1);
 		**readbuff = '\0';
 	}
-	if (fd < 0 || !line || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
+	if (fd < 0 || !lien
+		|| BUFFER_SIZE <= 0 || fd > OPEN_MAX)
 	{
-		free (*readbuff);
+		free(*readbuff);
 		*readbuff = NULL;
 		return (-1);
 	}
-	return (-1);
+	return (1);
 }
 
-int	end_of_read(int rdcount, char **readbuff, char **line)
+int	ft_end_of_read(int readcount, char **readbuff, char **line)
 {
 	int	len;
 
-	if (rdcount == 0 && ft_strlen(*readbuff) <= 0)
+	if (readcount == 0 && ft_strlen(*readbuff) == 0)
 	{
-		free (*readbuff);
+		free(*readbuff);
 		*readbuff = NULL;
 		*line = malloc(sizeof(char));
 		**line = '\0';
 	}
-	else if (rdcount == 0)
+	else if (readcount == 0)
 	{
-	 	len = ft_strlen(*readbuff);
+		len = ft_strlen(*readbuff);
 		*line = ft_getline(len, *readbuff);
-		free (*readbuff);
+		free(*readbuff);
 		*readbuff = NULL;
 	}
 	return (0);
@@ -54,11 +59,11 @@ int	end_of_read(int rdcount, char **readbuff, char **line)
 
 int	get_next_line(int fd, char **line)
 {
-	static char	*readbuff;
+	static char *readbuff;
 	int			linelen;
 	int			readcount;
 
-	if (validparams(fd, line, &readbuff) < 0)
+	if (validparmas(fd, line, &readbuff) < 0)
 		return (-1);
 	linelen = ft_linelen(readbuff);
 	while (linelen < 0)
@@ -67,7 +72,7 @@ int	get_next_line(int fd, char **line)
 		if (!readbuff || readcount < 0)
 			return (-1);
 		else if (readcount == 0)
-			return (end_of_read(readcount, &readbuff, line));
+			return (ft_end_of_read(readcount, &readbuff, line));
 		linelen = ft_linelen(readbuff);
 	}
 	*line = ft_getline(linelen, readbuff);

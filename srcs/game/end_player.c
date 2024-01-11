@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   basics.h                                           :+:      :+:    :+:   */
+/*   end_player.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 08:33:21 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/02 08:33:25 by janhan           ###   ########.fr       */
+/*   Created: 2024/01/11 11:37:37 by janhan            #+#    #+#             */
+/*   Updated: 2024/01/11 11:39:19 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASICS_H
-# define BASICS_H
+#include "../so_long.h"
 
-# include "libft/libft.h"
-# include <stdio.h>
-
-typedef enum e_bool
+void	kill_player(t_game *game, t_vector pos)
 {
-	TRUE = 1,
-	FALSE = 0
-}	t_bool;
+	game->player.tile = NULL;
+	effect_anim(&game->effect, pos);
+	mlx_put_image_to_window(game->mlx, game->window, game->red_panel, 0, 0);
+}
 
-typedef struct s_vector
+void	remove_player(t_game *game)
 {
-	int	x;
-	int	y;
-}	t_vector;
-
-int		error(char *message);
-void	*null_error(char *message);
-void	print_warning(char *message);
-
-#endif
+	game->player.tile->type = ENEMY;
+	game->player.tile = NULL;
+}

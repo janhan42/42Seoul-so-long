@@ -5,16 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 08:31:00 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/02 08:31:13 by janhan           ###   ########.fr       */
+/*   Created: 2024/01/11 09:11:54 by janhan            #+#    #+#             */
+/*   Updated: 2024/01/11 10:08:28 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.h"
-#include <fcntl.h>
+#include <sys/fcntl.h>
 #include <unistd.h>
-#include "../gnl/get_next_line.h"
 
+/* 맵파일에 개행이 몇개인지 카운트 하는 함수 */
 static int	file_linecount(char *file)
 {
 	int		linecount;
@@ -34,12 +34,13 @@ static int	file_linecount(char *file)
 		if (readcount < 0)
 			return (-1);
 		if (c == '\n')
-			linecount++;
+			linecount ++;
 	}
 	close(fd);
 	return (linecount);
 }
 
+/* file_linecount로 받은 줄수로 문자열 배열 생성후 리턴 */
 static char	**alloc_columns(char *file)
 {
 	char	**map;
@@ -50,7 +51,7 @@ static char	**alloc_columns(char *file)
 		return (null_error("open or reading error, the file may not exist"));
 	map = malloc(sizeof(char *) * line_count + 1);
 	if (map == NULL)
-		return (null_error("malloc error on alloc_map()"));
+		return (null_error("malloc error on alloc_columns()"));
 	return (map);
 }
 
@@ -65,8 +66,10 @@ char	**read_map(char *file)
 		return (NULL);
 	fd = open(file, O_RDONLY);
 	i = 0;
-	while (get_next_line(fd, &map[i++]))
-		;
+	while (get_next_line(fd, &map[i]))
+	{
+		i++;
+	}
 	map[i] = NULL;
 	close(fd);
 	return (map);

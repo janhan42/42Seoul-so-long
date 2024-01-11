@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tilemap_generator.c                                :+:      :+:    :+:   */
+/*   tilemap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 08:31:29 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/02 08:31:51 by janhan           ###   ########.fr       */
+/*   Created: 2024/01/11 10:36:13 by janhan            #+#    #+#             */
+/*   Updated: 2024/01/11 11:20:50 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,19 @@ t_tile	**alloc_tilemap(char **map)
 	return (tilemap);
 }
 
-t_tiletype	define_tiletype(char definer)
+t_tiletype	define_tiletype(char type)
 {
-	if (definer == '1')
+	if (type == '1')
 		return (WALL);
-	if (definer == 'C')
+	if (type == 'C')
 		return (COLLECTABLE);
-	if (definer == 'P')
+	if (type == 'P')
 		return (PLAYER);
-	if (definer == 'E')
+	if (type == 'E')
 		return (EXIT);
-	if (definer == 'H' || definer == 'V')
+	if (type == 'H' || type == 'V')
 		return (ENEMY);
-	else if (definer == 'F')
+	else if (type == 'F')
 		return (FOLLOWER);
 	return (EMPTY);
 }
@@ -78,13 +78,13 @@ void	set_gamevars(t_tile *tile, t_game *game, char c)
 
 t_tile	**generate_tilemap(char **map, t_game *game)
 {
-	t_tile		**tilemap;
-	int			x;
-	int			y;
+	t_tile	**tilemap;
+	int		x;
+	int		y;
 
 	tilemap = alloc_tilemap(map);
 	if (!tilemap)
-		return (null_error("malloc error on alloc_tilemap()"));
+		return (null_error("malloc error on alloc_tilemap(tilemap.c)"));
 	y = 0;
 	while (map[y])
 	{
@@ -100,7 +100,7 @@ t_tile	**generate_tilemap(char **map, t_game *game)
 		y++;
 	}
 	tilemap[y] = NULL;
-	game->wndw_size.x = x * IMG_SIZE;
-	game->wndw_size.y = y * IMG_SIZE;
+	game->window_size.x = x * IMG_SIZE;
+	game->window_size.y = y * IMG_SIZE;
 	return (tilemap);
 }

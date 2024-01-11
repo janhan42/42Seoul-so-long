@@ -5,13 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 08:30:01 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/02 08:30:48 by janhan           ###   ########.fr       */
+/*   Created: 2024/01/11 10:19:05 by janhan            #+#    #+#             */
+/*   Updated: 2024/01/11 10:32:00 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.h"
 
+/* 유효한 맵 인자인지 체크 */
 int	valid_char(char c)
 {
 	if (c == '1' || c == '0' || c == 'C' || c == 'E' || c == 'P'
@@ -19,16 +20,16 @@ int	valid_char(char c)
 		return (TRUE);
 	return (FALSE);
 }
-
-int	valid_uniquechar(char c, char checker, t_bool *bool)
+/* 인자 중복 체크 */
+int	valid_uniquechar(char c, char checker, t_bool *state)
 {
-	if (c == checker && *bool == FALSE)
-		*bool = TRUE;
-	else if (c == checker && *bool == TRUE)
+	if (c == checker && *state == FALSE)
+		*state = TRUE;
+	else if (c == checker && *state == TRUE)
 		return (FALSE);
 	return (TRUE);
 }
-
+/* 맵 벽 체크 */
 int	valid_border(char c, t_vector point, t_vector size)
 {
 	if (point.y == 0 || point.x == 0

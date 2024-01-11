@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strend_cmp.c                                    :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 09:04:42 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/11 09:07:43 by janhan           ###   ########.fr       */
+/*   Created: 2024/01/11 08:13:59 by janhan            #+#    #+#             */
+/*   Updated: 2024/01/11 13:16:44 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../so_long.h"
 
-/* 뒷부분의 dest의 end 길이가 end와 같으면 Return 1 다르면 return 0*/
-int	ft_strend_cmp(char *dest, char *end)
+int	error(char *message)
 {
-	int	dest_len;
-	int	end_len;
+	ft_printf("\033[0;31m" " Error\n %s\n" "\033[0m", message);
+	return (0);
+}
 
-	dest_len = ft_strlen(dest);
-	end_len = ft_strlen(end);
-	if (dest_len <= end_len)
-		return (0);
-	dest += dest_len - end_len;
-	while (*dest)
-	{
-		if (*dest != *end)
-			return (0);
-		dest++;
-		end++;
-	}
-	return (1);
+void	*null_error(char *message)
+{
+	ft_printf("\033[0;31m" " Error\n %s\n" "\033[0m", message);
+	return (0);
+}
+
+void	print_warnig(char *message)
+{
+	ft_printf("\033[0;33m" " Warning\n %s\n" "\033[0m", message);
 }

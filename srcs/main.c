@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_table.c                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 08:44:35 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/02 08:44:45 by janhan           ###   ########.fr       */
+/*   Created: 2024/01/11 07:23:13 by janhan            #+#    #+#             */
+/*   Updated: 2024/01/11 12:32:16 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-void	ft_free_chartable(char **table)
+int main(int ac, char **av)
 {
-	int	i;
+	t_game game;
 
-	i = 0;
-	while (table[i])
-	{
-		free (table[i]);
-		i++;
-	}
-	free (table);
+	if (!start(&game, ac, av))
+		return (0);
+	mlx_hook(game.window, 2, 0, input, (void *)&game);
+	mlx_loop_hook(game.mlx, update, (void *)&game);
+	mlx_loop(game.mlx);
+	return (0);
 }

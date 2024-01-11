@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strend_cmp.c                                    :+:      :+:    :+:   */
+/*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 09:04:42 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/11 09:07:43 by janhan           ###   ########.fr       */
+/*   Created: 2023/10/16 12:25:01 by janhan            #+#    #+#             */
+/*   Updated: 2024/01/11 08:59:59 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* 뒷부분의 dest의 end 길이가 end와 같으면 Return 1 다르면 return 0*/
-int	ft_strend_cmp(char *dest, char *end)
+void	ft_print_char(va_list *out_ap, int *out_count, int *flag)
 {
-	int	dest_len;
-	int	end_len;
+	char	c;
+	int		out;
 
-	dest_len = ft_strlen(dest);
-	end_len = ft_strlen(end);
-	if (dest_len <= end_len)
-		return (0);
-	dest += dest_len - end_len;
-	while (*dest)
-	{
-		if (*dest != *end)
-			return (0);
-		dest++;
-		end++;
-	}
-	return (1);
+	out = 0;
+	c = (unsigned char)va_arg(*out_ap, int);
+	out = write(1, &c, 1);
+	if (out == -1)
+		*flag = 1;
+	else
+		*out_count += out;
 }
