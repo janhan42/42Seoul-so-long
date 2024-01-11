@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 11:32:09 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/11 11:40:40 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/11 18:04:06 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	move_to_exit(t_game *game, t_tile *tile)
 	mlx_put_image_to_window(game->mlx, game->window, game->white_panel, 0, 0);
 	remove_player(game);
 	game->collects = -1;
+	game->state = FALSE;
 }
 
 void	move_to_enemy(t_game *game, t_tile *tile)

@@ -6,11 +6,11 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 10:19:05 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/11 10:32:00 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/11 15:18:25 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
+#include "../so_long.h"
 
 /* 유효한 맵 인자인지 체크 */
 int	valid_char(char c)

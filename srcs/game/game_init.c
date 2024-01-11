@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 07:29:11 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/11 13:20:53 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/11 16:53:28 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,20 @@ static void	anim_setup(t_game *game)
 void	game_init(t_game *game)
 {
 	game->mlx = mlx_init();
-	game->window = mlx_new_window(game->mlx, game->window_size.x + IMG_SIZE / 2, game->window_size.y, "so_long");
+	game->window = mlx_new_window(game->mlx,
+			game->window_size.x + IMG_SIZE / 2,
+			game->window_size.y, "so_long");
 	mlx_hook(game->window, 17, 0, end_program, game);
 	open_imgs(game);
-	game->white_panel = new_panel(game, new_color(254,254,254, 0));
+	game->white_panel = new_panel(game, new_color(254, 254, 254, 0));
 	game->red_panel = new_panel(game, new_color(197, 4, 4, 0));
+	game->state = TRUE;
 }
 
 t_bool	start(t_game *game, int ac, char **av)
 {
 	game->collects = 0;
-	game->moves	= 0;
+	game->moves = 0;
 	game->tilemap = map_init(ac, av, game);
 	if (game->tilemap == NULL)
 		return (FALSE);

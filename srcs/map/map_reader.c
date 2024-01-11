@@ -6,13 +6,11 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:11:54 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/11 10:08:28 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/11 15:26:36 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
-#include <sys/fcntl.h>
-#include <unistd.h>
+#include "../so_long.h"
 
 /* 맵파일에 개행이 몇개인지 카운트 하는 함수 */
 static int	file_linecount(char *file)
@@ -66,10 +64,8 @@ char	**read_map(char *file)
 		return (NULL);
 	fd = open(file, O_RDONLY);
 	i = 0;
-	while (get_next_line(fd, &map[i]))
-	{
-		i++;
-	}
+	while (get_next_line(fd, &map[i++]))
+		;
 	map[i] = NULL;
 	close(fd);
 	return (map);

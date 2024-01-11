@@ -6,13 +6,15 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 07:23:37 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/11 13:12:06 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/11 18:20:33 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+# include <unistd.h>
+# include <fcntl.h>
 # include "../mlx/mlx.h"
 # include "../libft/libft.h"
 
@@ -38,10 +40,10 @@ typedef struct s_vector
 
 typedef struct s_color
 {
-	int r;
-	int g;
-	int b;
-	int a;
+	int	r;
+	int	g;
+	int	b;
+	int	a;
 }	t_color;
 
 // ----------- 맵 타일
@@ -61,9 +63,9 @@ typedef enum s_tiletype
 typedef struct s_tile
 {
 	t_tiletype		type;
-	t_tiletype		og_type; // 시작 타일
-	t_vector		position; // POSITION
-	struct s_tile	*up;	// 주변 타일
+	t_tiletype		og_type;
+	t_vector		position;
+	struct s_tile	*up;
 	struct s_tile	*down;
 	struct s_tile	*left;
 	struct s_tile	*right;
@@ -78,11 +80,10 @@ typedef struct s_mapcheckerdata
 	t_bool		b_collect;
 }	t_mapcheckerdata;
 
-
 // ----------- 이미지
-
 /* 벽 이미지 */
-typedef struct	s_wall_img
+
+typedef struct s_wall_img
 {
 	void	*block;
 	void	*up_left;
@@ -154,7 +155,7 @@ typedef struct s_enemy
 	int					dir;
 	t_tile				*og_tile;
 	t_tile				*tile;
-	struct	s_enemy		*next;
+	struct s_enemy		*next;
 }	t_enemy;
 
 // ----------- 플레이어 인포
@@ -169,7 +170,6 @@ typedef struct s_player
 	int		action_frames;
 	void	*action_img;
 }	t_player;
-
 
 /* 키입력 */
 enum e_keycode
@@ -202,10 +202,10 @@ typedef struct s_game
 	void			*door_open_img;
 	void			*door_close_img;
 	t_effect		effect;
-	void			*red_panel; // 사망시 화면 반짝임
-	void			*white_panel; // 탈출시 화면 반짝임
+	void			*red_panel;
+	void			*white_panel;
+	t_bool			state;
 }	t_game;
-
 
 // -------------------- 함수
 
@@ -215,9 +215,8 @@ int		ft_end_of_read(int readcount, char **readbuff, char **line);
 int		validparmas(int fd, char **lien, char **readbuff);
 int		ft_linelen(char *line);
 int		ft_newread(int fd, char **oldread);
-char	*ft_getline(int	len, char *read);
+char	*ft_getline(int len, char *read);
 char	*ft_clearline(int len, char *read);
-
 /* game */
 t_bool	start(t_game *game, int ac, char **av);
 t_tile	**map_init(int ac, char **av, t_game *gmae);
@@ -227,15 +226,14 @@ void	open_wallimgs_up(t_game *game);
 void	*new_panel(t_game *game, t_color color);
 void	color_panel(t_panel *panel, t_color color);
 t_color	new_color(int r, int g, int b, int a);
-
 /* map */
 int		valid_map(char **map);
-int 	valid_file(int ac, char *file);
+int		valid_file(int ac, char *file);
 char	**read_map(char *file);
 int		valid_char(char c);
 int		valid_uniquechar(char c, char checker, t_bool *state);
 int		valid_border(char c, t_vector point, t_vector size);
-
+int		ft_strlen_int(const char *str);
 // generate //
 t_tile	**generate_tilemap(char **map, t_game *game);
 
@@ -255,7 +253,7 @@ void	action_anim(t_player *player);
 t_bool	move_to(t_game *game, t_tile *tile);
 int		input(int key, t_game *game);
 void	move_to_empty(t_game *game, t_tile *tile);
-void	pick_collect(t_game* game, t_tile *tile);
+void	pick_collect(t_game *game, t_tile *tile);
 void	move_to_exit(t_game *game, t_tile *tile);
 void	move_to_enemy(t_game *game, t_tile *tile);
 

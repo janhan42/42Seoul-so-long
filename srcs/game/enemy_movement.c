@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 11:41:52 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/11 12:23:58 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/11 15:43:11 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ t_bool	move_hor(t_enemy *enemy, t_game *game)
 		else
 			return (change_dir(enemy));
 	}
-	else if (enemy->dir == 1)
+	else if (enemy-> dir == 1)
 	{
 		if (enemy->tile->right->type == EMPTY)
-			move_enemy_to(enemy, enemy->tile->left);
+			move_enemy_to(enemy, enemy->tile->right);
 		else if (enemy->tile->right->type == PLAYER)
 		{
 			move_enemy_to(enemy, enemy->tile->right);
@@ -74,7 +74,7 @@ t_bool	move_ver(t_enemy *enemy, t_game *game)
 		else
 			return (change_dir(enemy));
 	}
-	else if (enemy->dir == 1)
+	else if (enemy-> dir == 1)
 	{
 		if (enemy->tile->down->type == EMPTY)
 			move_enemy_to(enemy, enemy->tile->down);

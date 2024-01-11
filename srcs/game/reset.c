@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 11:23:44 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/11 11:27:07 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/11 16:02:13 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ int	reset(t_game *game)
 	game->moves = 0;
 	game->collects = game->og_collects;
 	mlx_put_image_to_window(game->mlx, game->window, game->white_panel, 0, 0);
+	game->state = TRUE;
 	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 10:58:34 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/11 11:03:36 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/11 16:51:42 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-static void	free_tilemap(t_game *game)
+void	free_tilemap(t_game *game)
 {
 	t_tile	**tilemap;
 
@@ -25,9 +25,9 @@ static void	free_tilemap(t_game *game)
 	free(tilemap);
 }
 
-static void	free_enemys(t_game *game)
+void	free_enemies(t_game *game)
 {
-	t_enemy *next;
+	t_enemy	*next;
 
 	if (game->enemy_list == NULL)
 		return ;
@@ -45,7 +45,7 @@ int	end_program(t_game *game)
 {
 	free_tilemap(game);
 	game->tilemap = NULL;
-	free_enemys(game);
+	free_enemies(game);
 	game->enemy_list = NULL;
 	exit(0);
 }

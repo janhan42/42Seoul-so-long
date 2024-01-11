@@ -6,7 +6,7 @@
 #    By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/08 13:40:39 by janhan            #+#    #+#              #
-#    Updated: 2024/01/11 13:03:05 by janhan           ###   ########.fr        #
+#    Updated: 2024/01/11 15:40:43 by janhan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,19 +72,35 @@ SRCS =				ft_isprint.c				\
 
 OBJS = $(SRCS:.c=.o)
 
+NONE='\033[0m'
+GREEN='\033[32m'
+YELLOW='\033[33m'
+GRAY='\033[2;37m'
+CURSIVE='\033[3m'
+PURPLE='\033[35m'
+BLUE='\033[34m'
+DELETELINE='\033[K;
+
 all : $(NAME)
 
 $(NAME): $(OBJS)
-	ar cr $@ $^
+	@echo $(CURSIVE)$(YELLOW) "        - Making $(NAME) -" $(NONE)
+	@ar cr $@ $^
+	@echo $(CURSIVE)$(YELLOW) "       - Compiling $(NAME) -" $(NONE)
+	@echo $(GREEN)"             - Complete -"$(NONE)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@ -I$(HEAD)
+	@echo $(CURSIVE)$(YELLOW) "      - Making object files -" $(NONE)
+	@$(CC) $(CFLAGS) -c $< -o $@ -I$(HEAD)
 
 clean :
-	rm -f $(OBJS)
+	@rm -fr $(OBJS)
+	@echo $(CURSIVE)$(BLUE) "     - clean $(NAME) OBJ files -" $(NONE)
 
-fclean : clean
-	rm -f $(NAME)
+fclean :
+	@rm -fr $(OBJS)
+	@rm -fr $(NAME)
+	@echo $(CURSIVE)$(PURPLE)"      - clean $(NAME) file -" $(NONE)
 
 re :
 	make fclean

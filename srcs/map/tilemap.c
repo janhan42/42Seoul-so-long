@@ -6,11 +6,11 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 10:36:13 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/11 11:20:50 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/11 15:24:51 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
+#include "../so_long.h"
 
 t_tile	**alloc_tilemap(char **map)
 {
@@ -35,22 +35,24 @@ t_tile	**alloc_tilemap(char **map)
 	return (tilemap);
 }
 
-t_tiletype	define_tiletype(char type)
+
+t_tiletype	define_tiletype(char definer)
 {
-	if (type == '1')
+	if (definer == '1')
 		return (WALL);
-	if (type == 'C')
+	if (definer == 'C')
 		return (COLLECTABLE);
-	if (type == 'P')
+	if (definer == 'P')
 		return (PLAYER);
-	if (type == 'E')
+	if (definer == 'E')
 		return (EXIT);
-	if (type == 'H' || type == 'V')
+	if (definer == 'H' || definer == 'V')
 		return (ENEMY);
-	else if (type == 'F')
+	else if (definer == 'F')
 		return (FOLLOWER);
 	return (EMPTY);
 }
+
 
 void	setup_tile(t_tile **tilemap, int x, int y)
 {
@@ -66,6 +68,7 @@ void	setup_tile(t_tile **tilemap, int x, int y)
 	tilemap[y][x].right = &tilemap[y][x + 1];
 }
 
+
 void	set_gamevars(t_tile *tile, t_game *game, char c)
 {
 	if (tile->type == PLAYER)
@@ -78,13 +81,13 @@ void	set_gamevars(t_tile *tile, t_game *game, char c)
 
 t_tile	**generate_tilemap(char **map, t_game *game)
 {
-	t_tile	**tilemap;
-	int		x;
-	int		y;
+	t_tile		**tilemap;
+	int			x;
+	int			y;
 
 	tilemap = alloc_tilemap(map);
 	if (!tilemap)
-		return (null_error("malloc error on alloc_tilemap(tilemap.c)"));
+		return (null_error("malloc error on alloc_tilemap()"));
 	y = 0;
 	while (map[y])
 	{
@@ -104,3 +107,4 @@ t_tile	**generate_tilemap(char **map, t_game *game)
 	game->window_size.y = y * IMG_SIZE;
 	return (tilemap);
 }
+

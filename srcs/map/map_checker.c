@@ -6,11 +6,11 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 08:12:29 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/11 10:30:52 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/11 15:18:19 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
+#include "../so_long.h"
 
 int	valid_file(int ac, char *file)
 {
@@ -50,7 +50,7 @@ static int	checks(char **map, t_mapcheckerdata *data)
 	if (map[y][x] == 'E')
 		data->b_exit = TRUE;
 	if (!valid_border(map[y][x], data->point, data->size))
-		return (error("map must be surrounded by wall '1'"));
+		return (error("map must be surrounded by walls '1'"));
 	if (map[y][x] == 'C')
 		data->b_collect = TRUE;
 	return (TRUE);
@@ -65,7 +65,7 @@ int	valid_map(char **map)
 	vaild = TRUE;
 	while (map[data.point.y])
 	{
-		if (ft_strlen(map[data.point.y]) != data.size.x)
+		if (ft_strlen_int(map[data.point.y]) != data.size.x)
 			vaild = error("map must be rectangular");
 		data.point.x = 0;
 		while (map[data.point.y][data.point.x])

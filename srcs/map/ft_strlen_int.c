@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   ft_strlen_int.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 08:11:06 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/11 13:11:59 by janhan           ###   ########.fr       */
+/*   Created: 2024/01/11 16:46:02 by janhan            #+#    #+#             */
+/*   Updated: 2024/01/11 16:46:03 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-# define MAP_H
+#include "../so_long.h"
 
-# include "../so_long.h"
-# include <unistd.h>
-# include <fcntl.h>
+int	ft_strlen_int(const char *str)
+{
+	int	i;
 
-#endif
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}

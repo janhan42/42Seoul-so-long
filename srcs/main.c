@@ -6,15 +6,15 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 07:23:13 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/11 12:32:16 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/11 16:47:22 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_game game;
+	t_game	game;
 
 	if (!start(&game, ac, av))
 		return (0);

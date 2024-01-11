@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 11:22:35 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/11 12:31:04 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/11 16:54:48 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	effect_anim(t_effect *effect, t_vector pos)
 {
 	effect->counter = 0;
-	effect->pos	= pos;
+	effect->pos = pos;
 }
 
 void	action_anim(t_player *player)
@@ -30,9 +30,9 @@ t_bool	move_to(t_game *game, t_tile *tile)
 		move_to_empty(game, tile);
 	else if (tile->type == COLLECTABLE)
 		pick_collect(game, tile);
-	else if (tile->type == EXIT && game->collects <= 0)
+	else if (tile->type == EXIT && game->collects == 0)
 		move_to_exit(game, tile);
-	else if (tile->type == EMPTY || tile->type == FOLLOWER)
+	else if (tile->type == ENEMY || tile->type == FOLLOWER)
 	{
 		move_to_enemy(game, tile);
 		return (FALSE);
@@ -45,19 +45,20 @@ t_bool	move_to(t_game *game, t_tile *tile)
 
 int	input(int key, t_game *game)
 {
-	t_bool moved;
+	t_bool	moved;
 
+	moved = FALSE;
 	if (key == ESC)
 		end_program(game);
 	else if (key == RESET)
 		return (reset(game));
-	if (key == KEY_UP)
+	else if (key == KEY_UP && game->state)
 		moved = move_to(game, game->player.tile->up);
-	else if (key == KEY_DOWN)
+	else if (key == KEY_DOWN && game->state)
 		moved = move_to(game, game->player.tile->down);
-	else if (key == KEY_LEFT)
+	else if (key == KEY_LEFT && game->state)
 		moved = move_to(game, game->player.tile->left);
-	else if (key == KEY_RIGHT)
+	else if (key == KEY_RIGHT && game->state)
 		moved = move_to(game, game->player.tile->right);
 	else
 		return (0);
