@@ -11,6 +11,7 @@ LIBFT_A			=		libft/libft.a
 MLX_DIR			=		mlx
 
 SRCS			=		./srcs/map/gnl/get_next_line.c			\
+						./srcs/map/flood_fill.c					\
 						./srcs/map/gnl/get_next_line_utils.c	\
 						./srcs/map/enemy.c						\
 						./srcs/map/map_checker_utils.c			\

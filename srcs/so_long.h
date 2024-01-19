@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 07:23:37 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/17 16:31:34 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/19 12:18:21 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,6 +231,7 @@ t_color	new_color(int r, int g, int b, int a);
 /* map */
 int		valid_map(char **map);
 int		valid_file(int ac, char *file);
+t_bool	is_connected(t_tile **tilemap);
 char	**read_map(char *file);
 int		valid_char(char c);
 int		valid_uniquechar(char c, char checker, t_bool *state);
