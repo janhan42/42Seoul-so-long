@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 10:36:13 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/11 15:24:51 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/17 16:35:40 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	setup_tile(t_tile **tilemap, int x, int y)
 	tilemap[y][x].og_type = tilemap[y][x].type;
 	tilemap[y][x].position.x = x * IMG_SIZE;
 	tilemap[y][x].position.y = y * IMG_SIZE;
+	tilemap[y][x].visited = FALSE;
 	if (y != 0)
 		tilemap[y][x].up = &tilemap[y - 1][x];
 	if (tilemap[y + 1] != NULL)

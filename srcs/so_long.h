@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 07:23:37 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/11 18:20:33 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/17 16:31:34 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ typedef struct s_tile
 	struct s_tile	*down;
 	struct s_tile	*left;
 	struct s_tile	*right;
+	t_bool			visited;
+	int				group_id;
 }	t_tile;
 
 typedef struct s_mapcheckerdata
