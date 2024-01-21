@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 11:08:34 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/21 12:48:30 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/21 17:26:51 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	open_wallimgs_up(t_game *game)
 {
 	game->wall_imgs.block = mlx_xpm_file_to_image(game->mlx,
-			"srcs/sprites/wall_02.xpm",
+			"srcs/sprites/wall_01.xpm",
 			&game->img_size.x, &game->img_size.y);
 	game->wall_imgs.up_left = mlx_xpm_file_to_image(game->mlx,
 			"srcs/sprites/wall_ul.xpm",
