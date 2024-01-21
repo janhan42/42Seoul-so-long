@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:32:26 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/11 13:01:31 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/21 16:19:57 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	player_animation(t_player *player)
 		&& player->framecount >= player->action_frames)
 	{
 		player->current_img = player->idle_img_1;
+		player->framecount = 0;
 	}
 	else if (player->framecount == player->idle_frames)
 	{

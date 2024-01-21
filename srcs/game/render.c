@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:41:41 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/15 12:33:28 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/21 15:22:53 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static void	draw_image(t_tile tile, t_game game, t_vector pos)
 			game.enemy_imgs.follow_current, pos.x, pos.y);
 }
 
-/* If the effect counter is less than its animation frames, draws it */
 static void	draw_effect(t_game game)
 {
 	if (game.effect.counter < game.effect.frames)
@@ -48,8 +47,6 @@ static void	draw_effect(t_game game)
 			game.effect.pos.x, game.effect.pos.y);
 }
 
-/* Writes the number of moves on the window,
-changing its color if the game is completed  */
 static void	draw_text(t_game game)
 {
 	char	*str;
@@ -68,7 +65,6 @@ static void	draw_text(t_game game)
 	free(str);
 }
 
-/* Puts the tile map on the window */
 void	render(t_game game)
 {
 	t_tile	tile;

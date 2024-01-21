@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 07:23:37 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/21 08:21:45 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/21 16:23:23 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
+
+# define WINDOW_CLOSE	17
+# define KEY_PRESSD		2
 
 /* 간편 구조체 enum */
 
@@ -228,6 +231,7 @@ void	open_wallimgs_up(t_game *game);
 void	*new_panel(t_game *game, t_color color);
 void	color_panel(t_panel *panel, t_color color);
 t_color	new_color(int r, int g, int b, int a);
+t_bool	open_checker(t_game *game);
 /* map */
 int		valid_map(char **map);
 int		valid_file(int ac, char *file);
