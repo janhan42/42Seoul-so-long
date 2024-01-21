@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 10:19:05 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/11 15:18:25 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/21 09:10:11 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	valid_char(char c)
 		return (TRUE);
 	return (FALSE);
 }
+
 /* 인자 중복 체크 */
 int	valid_uniquechar(char c, char checker, t_bool *state)
 {
@@ -29,6 +30,7 @@ int	valid_uniquechar(char c, char checker, t_bool *state)
 		return (FALSE);
 	return (TRUE);
 }
+
 /* 맵 벽 체크 */
 int	valid_border(char c, t_vector point, t_vector size)
 {

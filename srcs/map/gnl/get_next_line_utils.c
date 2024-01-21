@@ -6,15 +6,13 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 12:21:14 by slucas-s          #+#    #+#             */
-/*   Updated: 2024/01/11 15:23:26 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/21 09:11:06 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include  "../../so_long.h"
 
-/* Returns the index of the \n in <line>
-if there is one. -1 if not founded. */
-int	ft_linelen (char *line)
+int	ft_linelen(char *line)
 {
 	int	i;
 
@@ -30,8 +28,6 @@ int	ft_linelen (char *line)
 	return (-1);
 }
 
-/* Creates -with malloc- a string that containd
-the first <len> bytes of <read> */
 char	*ft_getline(int len, char *read)
 {
 	char	*line;
@@ -48,7 +44,6 @@ char	*ft_getline(int len, char *read)
 	return (line);
 }
 
-/* Removes the first <len> bytes of <read> */
 char	*ft_clearline(int len, char *read)
 {
 	char	*output;
@@ -68,11 +63,6 @@ char	*ft_clearline(int len, char *read)
 	return (output);
 }
 
-// ---------------------------------------------------------------------
-// READ
-
-/* Reads BUFFER_SIZE bytes of the <fd> file,
-and adds it to the end of <oldread> */
 int	ft_newread(int fd, char **oldread)
 {
 	int		count;

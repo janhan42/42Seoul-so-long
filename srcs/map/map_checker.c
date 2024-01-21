@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 08:12:29 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/11 15:18:19 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/21 09:10:00 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static t_mapcheckerdata	init_checkerdata(char **map)
 	data.point.y = 0;
 	return (data);
 }
+
 static int	checks(char **map, t_mapcheckerdata *data)
 {
 	int	x;

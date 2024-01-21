@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 10:48:13 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/11 15:41:51 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/21 09:03:37 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static t_enemy	*new_enemy(t_enemytype type, t_tile *tile)
 	return (enemy);
 }
 
-static t_enemy *last_enemy(t_enemy *list)
+static t_enemy	*last_enemy(t_enemy *list)
 {
 	if (!list)
 		return (NULL);
@@ -38,7 +38,7 @@ static t_enemy *last_enemy(t_enemy *list)
 
 void	add_enemy(t_game *game, t_enemytype type, t_tile *tile)
 {
-	t_enemy *new;
+	t_enemy	*new;
 
 	new = new_enemy(type, tile);
 	if (new == NULL)

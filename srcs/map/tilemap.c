@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 10:36:13 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/17 16:35:40 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/21 09:10:33 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ t_tile	**alloc_tilemap(char **map)
 	return (tilemap);
 }
 
-
 t_tiletype	define_tiletype(char definer)
 {
 	if (definer == '1')
@@ -53,7 +52,6 @@ t_tiletype	define_tiletype(char definer)
 	return (EMPTY);
 }
 
-
 void	setup_tile(t_tile **tilemap, int x, int y)
 {
 	tilemap[y][x].og_type = tilemap[y][x].type;
@@ -68,7 +66,6 @@ void	setup_tile(t_tile **tilemap, int x, int y)
 		tilemap[y][x].left = &tilemap[y][x - 1];
 	tilemap[y][x].right = &tilemap[y][x + 1];
 }
-
 
 void	set_gamevars(t_tile *tile, t_game *game, char c)
 {
@@ -108,4 +105,3 @@ t_tile	**generate_tilemap(char **map, t_game *game)
 	game->window_size.y = y * IMG_SIZE;
 	return (tilemap);
 }
-

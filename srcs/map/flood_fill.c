@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:36:24 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/19 12:34:09 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/21 09:09:36 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,24 @@
 
 // 테스트용
 #include <stdio.h>
+
+void	reset_visited(t_tile **tilemap)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (tilemap[y])
+	{
+		x = 0;
+		while (tilemap[y][x].type != 0)
+		{
+			tilemap[y][x].visited = FALSE;
+			x++;
+		}
+		y++;
+	}
+}
 
 t_tile	*find_player_tile(t_tile **tilemap)
 {
@@ -35,41 +53,50 @@ t_tile	*find_player_tile(t_tile **tilemap)
 	return (NULL);
 }
 
-t_bool	flood_fill(t_tile *tile, t_tiletype target)
+t_bool	flood_fill_collectables(t_tile *tile, int *collectable_count)
 {
-	printf("Visiting Tile: Type = %c, Visited = %d\n", tile ? tile->type : 'N', tile ? tile->visited : -1);
-		// 타일이 NULL이거나 벽이거나 이미 방문했으면 탐색 중단
-	if (!tile || tile->type == WALL || tile->visited)
+	if (!tile || tile->type == WALL || tile->visited || tile->type == EXIT)
 		return (FALSE);
-
-	// 목표 타일을 찾으면 TRUE 반환
-	if (tile->type == target)
-		return (TRUE);
-
-	// 현재 타일을 방문했다고 표시
+	if (tile->type == COLLECTABLE)
+		(*collectable_count)++;
 	tile->visited = TRUE;
-
-	// 인접한 타일을 재귀적으로 탐색
-	if (flood_fill(tile->up, target) || flood_fill(tile->down, target) ||
-		flood_fill(tile->left, target) || flood_fill(tile->right, target)) {
-		return (TRUE);
-	}
-
-	// 인접한 타일 중에서 목표 타일을 찾지 못했으면 FALSE 반환
-	return (FALSE);
-}
-
-t_bool is_connected(t_tile **tilemap) {
-
-	t_tile	*player;
-
-	player = find_player_tile(tilemap);
-	if (player == NULL)
-		null_error("find failed error on is_connected() must have be one Player tile()");
-	// flood_fill 함수를 사용하여 'E' 타입의 타일까지 도달 가능한지 확인합니다.
-	if (!flood_fill(player, EXIT))
-		return (error("is not connected map on is_connected()"));
+	flood_fill_collectables(tile->up, collectable_count);
+	flood_fill_collectables(tile->down, collectable_count);
+	flood_fill_collectables(tile->left, collectable_count);
+	flood_fill_collectables(tile->right, collectable_count);
 	return (TRUE);
 }
 
+t_bool	flood_fill_exit(t_tile *tile, t_tiletype target)
+{
+	if (!tile || tile->type == WALL || tile->visited)
+		return (FALSE);
+	if (tile->type == target)
+		return (TRUE);
+	tile->visited = TRUE;
+	if (flood_fill_exit(tile->up, target)
+		|| flood_fill_exit(tile->down, target)
+		|| flood_fill_exit(tile->left, target)
+		|| flood_fill_exit(tile->right, target))
+		return (TRUE);
+	return (FALSE);
+}
 
+t_bool	is_connected(t_game *game)
+{
+	t_tile	*player;
+	int		collectable_count;
+
+	player = find_player_tile(game->tilemap);
+	if (player == NULL)
+		null_error("find failed error on is_connected(player)");
+	collectable_count = 0;
+	flood_fill_collectables(player, &collectable_count);
+	if (collectable_count != game->collects)
+		return (error("failed error on is_connected(collectable)"));
+	reset_visited(game->tilemap);
+	if (collectable_count == game->collects && flood_fill_exit(player, EXIT))
+		return (TRUE);
+	else
+		return (error("failed error on is_connected(exit)"));
+}

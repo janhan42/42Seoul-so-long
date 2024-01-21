@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 07:29:11 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/19 12:32:22 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/21 08:21:30 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ t_bool	start(t_game *game, int ac, char **av)
 	game->collects = 0;
 	game->moves = 0;
 	game->tilemap = map_init(ac, av, game);
-	ft_printf("start is connected valud : %d", is_connected(game->tilemap));
-	if (game->tilemap == NULL || !is_connected(game->tilemap))
+	if (game->tilemap == NULL || !is_connected(game))
 		return (FALSE);
 	game->og_collects = game->collects;
 	anim_setup(game);

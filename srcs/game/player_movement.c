@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 11:32:09 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/11 18:04:06 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/21 09:03:04 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	move_to_empty(t_game *game, t_tile *tile)
 	game->player.tile = tile;
 }
 
-void	pick_collect(t_game* game, t_tile *tile)
+void	pick_collect(t_game *game, t_tile *tile)
 {
 	tile->type = EMPTY;
 	game->collects--;
@@ -30,7 +30,7 @@ void	pick_collect(t_game* game, t_tile *tile)
 
 void	move_to_exit(t_game *game, t_tile *tile)
 {
-	effect_anim(&game->effect,tile->position);
+	effect_anim(&game->effect, tile->position);
 	mlx_put_image_to_window(game->mlx, game->window, game->white_panel, 0, 0);
 	remove_player(game);
 	game->collects = -1;
