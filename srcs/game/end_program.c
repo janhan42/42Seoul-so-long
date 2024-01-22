@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 10:58:34 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/11 16:51:42 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/22 09:41:55 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ int	end_program(t_game *game)
 	game->tilemap = NULL;
 	free_enemies(game);
 	game->enemy_list = NULL;
+	mlx_destroy_window(game->mlx, game->window);
 	exit(0);
 }

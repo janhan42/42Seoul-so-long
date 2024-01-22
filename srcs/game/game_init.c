@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 07:29:11 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/21 17:47:57 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/22 09:41:57 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	game_init(t_game *game)
 	game->window = mlx_new_window(game->mlx,
 			game->window_size.x + IMG_SIZE / 2,
 			game->window_size.y, "so_long");
-	mlx_hook(game->window, WINDOW_CLOSE, 0, end_program, game);
 	open_imgs(game);
 	game->white_panel = new_panel(game, new_color(254, 254, 254, 0));
 	game->red_panel = new_panel(game, new_color(197, 4, 4, 0));

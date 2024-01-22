@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 08:12:29 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/21 15:37:27 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/22 09:42:03 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static int	checks(char **map, t_mapcheckerdata *data)
 		return (error("invalid map character"));
 	if (!valid_uniquechar(map[y][x], 'P', &data->b_player))
 		return (error("must be only one player 'P'"));
-	if (map[y][x] == 'E')
-		data->b_exit = TRUE;
+	if (!valid_uniquechar(map[y][x], 'E', &data->b_exit))
+		return (error("must be only one EXIT 'E'"));
 	if (!valid_border(map[y][x], data->point, data->size))
 		return (error("map must be surrounded by walls '1'"));
 	if (map[y][x] == 'C')
@@ -73,7 +73,10 @@ int	valid_map(char **map)
 		while (map[data.point.y][data.point.x])
 		{
 			if (checks(map, &data) == FALSE)
+			{
 				vaild = FALSE;
+				return (FALSE);
+			}
 			data.point.x++;
 		}
 		data.point.y++;

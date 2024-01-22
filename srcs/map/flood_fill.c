@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:36:24 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/21 09:09:36 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/22 09:42:02 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,12 @@ t_bool	flood_fill_collectables(t_tile *tile, int *collectable_count)
 	if (tile->type == COLLECTABLE)
 		(*collectable_count)++;
 	tile->visited = TRUE;
-	flood_fill_collectables(tile->up, collectable_count);
-	flood_fill_collectables(tile->down, collectable_count);
-	flood_fill_collectables(tile->left, collectable_count);
-	flood_fill_collectables(tile->right, collectable_count);
-	return (TRUE);
+	if (flood_fill_collectables(tile->up, collectable_count)
+		|| flood_fill_collectables(tile->down, collectable_count)
+		|| flood_fill_collectables(tile->left, collectable_count)
+		|| flood_fill_collectables(tile->right, collectable_count))
+		return (TRUE);
+	return (FALSE);
 }
 
 t_bool	flood_fill_exit(t_tile *tile, t_tiletype target)

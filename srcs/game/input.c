@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 11:22:35 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/21 15:29:23 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/22 09:41:58 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ t_bool	move_to(t_game *game, t_tile *tile)
 	}
 	else
 		return (FALSE);
-	move_enemies(game);
+	if (tile->type != COLLECTABLE)
+		move_enemies(game);
 	return (TRUE);
 }
 

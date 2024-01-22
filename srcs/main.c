@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 07:23:13 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/21 16:23:28 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/22 08:55:56 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int ac, char **av)
 	if (!start(&game, ac, av))
 		return (0);
 	mlx_hook(game.window, KEY_PRESSD, 0, input, (void *)&game);
+	mlx_hook(game.window, WINDOW_CLOSE, 0, end_program, (void *)&game);
 	mlx_loop_hook(game.mlx, update, (void *)&game);
 	mlx_loop(game.mlx);
 	return (0);
