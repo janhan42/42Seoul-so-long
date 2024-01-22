@@ -6,13 +6,13 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 10:36:13 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/22 09:42:05 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/22 10:24:53 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-t_tile	**alloc_tilemap(char **map)
+static t_tile	**alloc_tilemap(char **map)
 {
 	t_tile	**tilemap;
 	int		i;
@@ -35,7 +35,7 @@ t_tile	**alloc_tilemap(char **map)
 	return (tilemap);
 }
 
-t_tiletype	define_tiletype(char definer)
+static t_tiletype	define_tiletype(char definer)
 {
 	if (definer == '1')
 		return (WALL);
@@ -52,7 +52,7 @@ t_tiletype	define_tiletype(char definer)
 	return (EMPTY);
 }
 
-void	setup_tile(t_tile **tilemap, int x, int y)
+static void	setup_tile(t_tile **tilemap, int x, int y)
 {
 	tilemap[y][x].og_type = tilemap[y][x].type;
 	tilemap[y][x].position.x = x * IMG_SIZE;
@@ -67,7 +67,7 @@ void	setup_tile(t_tile **tilemap, int x, int y)
 	tilemap[y][x].right = &tilemap[y][x + 1];
 }
 
-void	set_gamevars(t_tile *tile, t_game *game, char c)
+static void	set_gamevars(t_tile *tile, t_game *game, char c)
 {
 	if (tile->type == PLAYER)
 		game->player.tile = tile;

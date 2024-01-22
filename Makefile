@@ -18,7 +18,6 @@ SRCS_MAN		=		./srcs/map/gnl/get_next_line.c						\
 						./srcs/map/map_checker.c							\
 						./srcs/map/map_reader.c								\
 						./srcs/map/tilemap.c								\
-						./srcs/map/ft_strlen_int.c							\
 						./srcs/game/draw_wall.c								\
 						./srcs/game/end_player.c							\
 						./srcs/game/end_program.c							\
@@ -45,7 +44,6 @@ SRCS_BONUS		=		./srcs_bonus/map/gnl/get_next_line_bonus.c			\
 						./srcs_bonus/map/map_checker_bonus.c				\
 						./srcs_bonus/map/map_reader_bonus.c					\
 						./srcs_bonus/map/tilemap_bonus.c					\
-						./srcs_bonus/map/ft_strlen_int_bonus.c				\
 						./srcs_bonus/game/draw_wall_bonus.c					\
 						./srcs_bonus/game/end_player_bonus.c				\
 						./srcs_bonus/game/end_program_bonus.c				\

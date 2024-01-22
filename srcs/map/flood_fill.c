@@ -6,16 +6,13 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:36:24 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/22 09:42:02 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/22 10:23:30 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-// 테스트용
-#include <stdio.h>
-
-void	reset_visited(t_tile **tilemap)
+static void	reset_visited(t_tile **tilemap)
 {
 	int	y;
 	int	x;
@@ -33,7 +30,7 @@ void	reset_visited(t_tile **tilemap)
 	}
 }
 
-t_tile	*find_player_tile(t_tile **tilemap)
+static t_tile	*find_player_tile(t_tile **tilemap)
 {
 	int	y;
 	int	x;
@@ -53,7 +50,7 @@ t_tile	*find_player_tile(t_tile **tilemap)
 	return (NULL);
 }
 
-t_bool	flood_fill_collectables(t_tile *tile, int *collectable_count)
+static t_bool	flood_fill_collectables(t_tile *tile, int *collectable_count)
 {
 	if (!tile || tile->type == WALL || tile->visited || tile->type == EXIT)
 		return (FALSE);
@@ -68,7 +65,7 @@ t_bool	flood_fill_collectables(t_tile *tile, int *collectable_count)
 	return (FALSE);
 }
 
-t_bool	flood_fill_exit(t_tile *tile, t_tiletype target)
+static t_bool	flood_fill_exit(t_tile *tile, t_tiletype target)
 {
 	if (!tile || tile->type == WALL || tile->visited)
 		return (FALSE);

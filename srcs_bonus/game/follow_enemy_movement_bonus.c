@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   follow_enemy_movement.c                            :+:      :+:    :+:   */
+/*   follow_enemy_movement_bonus.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:18:36 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/22 09:40:44 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/22 10:27:24 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long_bonus.h"
-#include <sys/_pthread/_pthread_types.h>
 
 int	define_dir(int value)
 {

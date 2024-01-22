@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 07:23:37 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/22 09:39:57 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/22 10:25:29 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,7 +240,6 @@ char	**read_map(char *file);
 int		valid_char(char c);
 int		valid_uniquechar(char c, char checker, t_bool *state);
 int		valid_border(char c, t_vector point, t_vector size);
-int		ft_strlen_int(const char *str);
 // generate //
 t_tile	**generate_tilemap(char **map, t_game *game);
 

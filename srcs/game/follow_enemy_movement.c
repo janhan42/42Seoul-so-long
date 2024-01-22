@@ -6,12 +6,11 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 12:18:36 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/22 09:41:57 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/22 10:27:16 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-#include <sys/_pthread/_pthread_types.h>
 
 int	define_dir(int value)
 {

@@ -6,15 +6,12 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 16:04:47 by slucas-s          #+#    #+#             */
-/*   Updated: 2024/01/22 10:06:20 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/22 10:21:06 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-/* Returs -1 if the params are invalid.
-If valid, returns 1 and sets <readbuff> to
-an empty string if it was null */
 int	validparams(int fd, char **line, char **readbuff)
 {
 	if (*readbuff == NULL)

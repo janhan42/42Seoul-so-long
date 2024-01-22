@@ -6,22 +6,20 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 08:12:29 by janhan            #+#    #+#             */
-/*   Updated: 2024/01/22 09:42:03 by janhan           ###   ########.fr       */
+/*   Updated: 2024/01/22 10:26:34 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-#include <sys/fcntl.h>
 
-int	valid_file(int ac, char *file)
+static int	ft_strlen_int(const char *str)
 {
-	if (ac == 1)
-		return (error("no args"));
-	if (ac > 2)
-		print_warnig("only the first file would be used");
-	if (!ft_strend_cmp(file, ".ber"))
-		return (error("map should be a .ber file"));
-	return (1);
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
 static t_mapcheckerdata	init_checkerdata(char **map)
@@ -56,6 +54,17 @@ static int	checks(char **map, t_mapcheckerdata *data)
 	if (map[y][x] == 'C')
 		data->b_collect = TRUE;
 	return (TRUE);
+}
+
+int	valid_file(int ac, char *file)
+{
+	if (ac == 1)
+		return (error("no args"));
+	if (ac > 2)
+		print_warnig("only the first file would be used");
+	if (!ft_strend_cmp(file, ".ber"))
+		return (error("map should be a .ber file"));
+	return (1);
 }
 
 int	valid_map(char **map)
